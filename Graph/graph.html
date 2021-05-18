@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Graph</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body>
+    <div class="navbar"><span>Dynamic Graph</span></div>
+    <div class="wrapper">
+
+        <div id="plot"></div>
+        <script>
+            var layout = {
+				plot_bgcolor:"black",
+                paper_bgcolor:"#FFF3"
+            };
+            Plotly.plot('plot',[{
+                y:[Math.random()],
+                fill: 'tozeroy',
+                fillcolor:'#183628',
+                type:'line',
+                
+            }],layout);
+
+            var c = 0;
+
+            setInterval(function(){
+
+                Plotly.extendTraces('plot',{ y:[[Math.random()]]}, [0]);
+                c++;
+                if(c > 30) {
+                    Plotly.relayout('plot',{
+                        xaxis: {
+                            range: [c-30,c]
+                        },
+                    });
+                }
+            },800);
+        </script>
+    </div>
+    </body>
+</html>
